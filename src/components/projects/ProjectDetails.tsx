@@ -434,34 +434,52 @@ export default function ProjectDetails({
           </p>
 
           <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-            {/* START PROJECT */}
+  {/* STUDYNOVA TELEGRAM */}
 
-            <Link
-              href="/#contact"
-              className="group flex h-14 items-center justify-center gap-3 rounded-full bg-white px-8 text-sm font-medium text-black transition-all duration-300 hover:bg-blue-500 hover:text-white"
-            >
-              {page.startProject}
+  {slug === "studynova-ai" && (
+    <a
+      href="https://t.me/studynova_assistant_bot"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex h-14 items-center justify-center gap-3 rounded-full bg-blue-500 px-8 text-sm font-medium text-white transition-all duration-300 hover:bg-blue-400"
+    >
+      Try StudyNova AI
 
-              <ArrowUpRight
-                size={17}
-                className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-              />
-            </Link>
+      <ArrowUpRight
+        size={17}
+        className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+      />
+    </a>
+  )}
 
-            {/* MORE PROJECTS */}
+  {/* START PROJECT */}
 
-            <Link
-              href="/#projects"
-              className="group flex h-14 items-center justify-center gap-3 rounded-full border border-white/15 bg-white/[0.02] px-8 text-sm text-white/60 transition-all duration-300 hover:border-white/30 hover:bg-white/5 hover:text-white"
-            >
-              {page.viewMoreProjects}
+  <Link
+    href="/#contact"
+    className="group flex h-14 items-center justify-center gap-3 rounded-full bg-white px-8 text-sm font-medium text-black transition-all duration-300 hover:bg-blue-500 hover:text-white"
+  >
+    {page.startProject}
 
-              <ExternalLink
-                size={15}
-                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
-            </Link>
-          </div>
+    <ArrowUpRight
+      size={17}
+      className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+    />
+  </Link>
+
+  {/* MORE PROJECTS */}
+
+  <Link
+    href="/#projects"
+    className="group flex h-14 items-center justify-center gap-3 rounded-full border border-white/15 bg-white/[0.02] px-8 text-sm text-white/60 transition-all duration-300 hover:border-white/30 hover:bg-white/5 hover:text-white"
+  >
+    {page.viewMoreProjects}
+
+    <ExternalLink
+      size={15}
+      className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+    />
+  </Link>
+</div>
         </div>
       </section>
 

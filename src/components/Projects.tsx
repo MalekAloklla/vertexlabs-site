@@ -1,13 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowUpRight,
   BrainCircuit,
   Layers3,
   Sparkles,
   ExternalLink,
+  LockKeyhole,
+  X,
 } from "lucide-react";
 
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -39,7 +42,9 @@ const projects = [
 
 export default function Projects() {
   const { isArabic } = useLanguage();
-const { t } = useTranslation();
+  const { t } = useTranslation();
+
+  const [showPrivateSystem, setShowPrivateSystem] = useState(false);
 
   return (
     <section
@@ -70,6 +75,7 @@ const { t } = useTranslation();
             <h2 className="mt-7 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
               {t.projects.title1}
               <br />
+
               <span className="text-white/40">
                 {t.projects.title2}
               </span>
@@ -89,6 +95,7 @@ const { t } = useTranslation();
         ========================================================= */}
 
         <div className="mt-16 space-y-5">
+
           {projects.map((project, index) => {
             const Icon = project.icon;
 
@@ -219,10 +226,125 @@ const { t } = useTranslation();
                   </div>
 
                   {/* =====================================================
-                      VIEW PROJECT BUTTON
+                      BUTTONS
                   ===================================================== */}
 
-                  <div className="lg:justify-self-end">
+                  <div className="flex flex-wrap items-center gap-3 lg:justify-self-end">
+
+                    {/* =================================================
+                        STUDYNOVA TELEGRAM BUTTON
+                    ================================================= */}
+
+                    {project.slug === "studynova-ai" && (
+                      <a
+                        href="https://t.me/studynova_assistant_bot"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Open StudyNova AI Telegram Bot"
+                        className="group/telegram relative flex h-12 items-center gap-3 overflow-hidden rounded-full border border-blue-500/20 bg-blue-500/[0.07] pl-5 pr-2 text-xs font-medium text-blue-300 transition-all duration-500 hover:border-blue-400/40 hover:bg-blue-500/[0.14] hover:text-white hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]"
+                      >
+
+                        {/* Shine */}
+
+                        <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent transition-transform duration-700 group-hover/telegram:translate-x-full" />
+
+                        <span className="relative z-10 whitespace-nowrap">
+                          Telegram Bot
+                        </span>
+
+                        {/* Telegram Icon */}
+
+                        <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border border-blue-400/20 bg-blue-500/10 transition-all duration-500 group-hover/telegram:border-blue-400/40 group-hover/telegram:bg-blue-500/20">
+                          <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            className="h-[15px] w-[15px]"
+                            aria-hidden="true"
+                          >
+                            <path
+                              d="M21.5 3.5L18.2 20c-.25 1.17-.9 1.46-1.82.91l-5.03-3.71-2.43 2.34c-.27.27-.5.5-1.02.5l.36-5.12 9.32-8.42c.41-.36-.09-.56-.64-.2L5.42 13.07.48 11.52c-1.07-.34-1.09-1.07.22-1.58L20.02 2.5c.88-.33 1.65.2 1.48 1Z"
+                              fill="currentColor"
+                            />
+                          </svg>
+                        </span>
+                      </a>
+                    )}
+
+{/* =================================================
+    BOURHAN TELEGRAM BUTTON
+================================================= */}
+
+{project.slug === "bourhan-teacher-ai" && (
+  <a
+    href="https://t.me/Bourhan_Bakhash_Teacher_AI_bot"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Open Bourhan Teacher AI Telegram Bot"
+    className="group/telegram relative flex h-12 items-center gap-3 overflow-hidden rounded-full border border-blue-500/20 bg-blue-500/[0.07] pl-5 pr-2 text-xs font-medium text-blue-300 transition-all duration-500 hover:border-blue-400/40 hover:bg-blue-500/[0.14] hover:text-white hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]"
+  >
+    {/* Shine */}
+
+    <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent transition-transform duration-700 group-hover/telegram:translate-x-full" />
+
+    {/* Text */}
+
+    <span className="relative z-10 whitespace-nowrap">
+      Telegram Bot
+    </span>
+
+    {/* Telegram Icon */}
+
+    <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border border-blue-400/20 bg-blue-500/10 transition-all duration-500 group-hover/telegram:border-blue-400/40 group-hover/telegram:bg-blue-500/20">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        className="h-[15px] w-[15px]"
+        aria-hidden="true"
+      >
+        <path
+          d="M21.5 3.5L18.2 20c-.25 1.17-.9 1.46-1.82.91l-5.03-3.71-2.43 2.34c-.27.27-.5.5-1.02.5l.36-5.12 9.32-8.42c.41-.36-.09-.56-.64-.2L5.42 13.07.48 11.52c-1.07-.34-1.09-1.07.22-1.58L20.02 2.5c.88-.33 1.65.2 1.48 1Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </a>
+)}
+
+                    {/* =================================================
+                        VERTEXOS SYSTEM WEB BUTTON
+                    ================================================= */}
+
+                    {project.slug === "vertexos" && (
+                      <button
+                        type="button"
+                        onClick={() => setShowPrivateSystem(true)}
+                        aria-label="Open VertexOS System information"
+                        className="group/system relative flex h-12 items-center gap-3 overflow-hidden rounded-full border border-indigo-500/20 bg-indigo-500/[0.07] pl-5 pr-2 text-xs font-medium text-indigo-300 transition-all duration-500 hover:border-indigo-400/40 hover:bg-indigo-500/[0.14] hover:text-white hover:shadow-[0_0_30px_rgba(99,102,241,0.15)]"
+                      >
+
+                        {/* Shine */}
+
+                        <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent transition-transform duration-700 group-hover/system:translate-x-full" />
+
+                        <span className="relative z-10 whitespace-nowrap">
+                          System Web
+                        </span>
+
+                        {/* Lock Icon */}
+
+                        <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border border-indigo-400/20 bg-indigo-500/10 transition-all duration-500 group-hover/system:border-indigo-400/40 group-hover/system:bg-indigo-500/20">
+                          <LockKeyhole
+                            size={14}
+                            className="text-indigo-300"
+                          />
+                        </span>
+                      </button>
+                    )}
+
+                    {/* =================================================
+                        VIEW PROJECT BUTTON
+                    ================================================= */}
+
                     <Link
                       href={`/projects/${project.slug}`}
                       aria-label={`${t.projects.viewProject} ${projectTranslation.title}`}
@@ -233,13 +355,9 @@ const { t } = useTranslation();
 
                       <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent transition-transform duration-700 group-hover/button:translate-x-full" />
 
-                      {/* Text */}
-
                       <span className="relative z-10 whitespace-nowrap">
                         {t.projects.viewProject}
                       </span>
-
-                      {/* Arrow */}
 
                       <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.10] bg-white/[0.04] transition-all duration-500 group-hover/button:border-blue-400/30 group-hover/button:bg-blue-500/15">
                         <ArrowUpRight
@@ -285,19 +403,15 @@ const { t } = useTranslation();
           className="mt-12 flex flex-col items-start justify-between gap-5 border-t border-white/[0.06] pt-8 sm:flex-row sm:items-center"
         >
 
-          {/* Text */}
+          <div>
+            <p className="text-sm text-white/40">
+              {t.projects.haveProject}
+            </p>
 
-<div>
-  <p className="text-sm text-white/40">
-    {t.projects.haveProject}
-  </p>
-
-  <p className="mt-1 text-xs text-white/20">
-    {t.projects.buildTogether}
-  </p>
-</div>
-
-          {/* CTA */}
+            <p className="mt-1 text-xs text-white/20">
+              {t.projects.buildTogether}
+            </p>
+          </div>
 
           <Link
             href="#contact"
@@ -312,6 +426,101 @@ const { t } = useTranslation();
           </Link>
         </motion.div>
       </div>
+
+      {/* =========================================================
+          PRIVATE SYSTEM MODAL
+      ========================================================= */}
+
+      <AnimatePresence>
+        {showPrivateSystem && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 px-6 backdrop-blur-md"
+            onClick={() => setShowPrivateSystem(false)}
+          >
+            <motion.div
+              initial={{
+                opacity: 0,
+                scale: 0.95,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+                scale: 0.95,
+                y: 20,
+              }}
+              transition={{
+                duration: 0.25,
+              }}
+              onClick={(event) => event.stopPropagation()}
+              className="relative w-full max-w-md overflow-hidden rounded-[2rem] border border-white/[0.10] bg-[#080d16] p-8 shadow-2xl shadow-black/60"
+            >
+
+              {/* Glow */}
+
+              <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-indigo-600/10 blur-[80px]" />
+
+              <div className="relative">
+
+                {/* Close */}
+
+                <button
+                  type="button"
+                  onClick={() => setShowPrivateSystem(false)}
+                  aria-label="Close"
+                  className="absolute right-0 top-0 flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] text-white/40 transition-all hover:border-white/20 hover:bg-white/[0.06] hover:text-white"
+                >
+                  <X size={16} />
+                </button>
+
+                {/* Icon */}
+
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-indigo-500/20 bg-indigo-500/10">
+                  <LockKeyhole
+                    size={24}
+                    className="text-indigo-400"
+                  />
+                </div>
+
+                {/* Text */}
+
+                <p className="mt-6 text-[10px] font-medium uppercase tracking-[0.25em] text-indigo-400">
+                  VertexOS
+                </p>
+
+                <h3 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-white">
+                  Private System
+                </h3>
+
+                <p className="mt-4 text-sm leading-7 text-white/45">
+                  This system is exclusively developed for Vertex Labs internal operations and is not publicly accessible.
+                </p>
+
+                <p className="mt-4 text-xs leading-6 text-white/25">
+                  Access is restricted to authorized Vertex Labs team members.
+                </p>
+
+                {/* Close button */}
+
+                <button
+                  type="button"
+                  onClick={() => setShowPrivateSystem(false)}
+                  className="mt-7 flex h-11 w-full items-center justify-center rounded-full border border-white/[0.10] bg-white/[0.04] text-xs font-medium text-white/60 transition-all hover:border-white/20 hover:bg-white/[0.07] hover:text-white"
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
