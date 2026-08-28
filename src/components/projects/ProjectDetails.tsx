@@ -162,38 +162,39 @@ export default function ProjectDetails({
           {/* RIGHT IMAGE */}
 
           <div className="relative">
-            <div className="pointer-events-none absolute -inset-16 rounded-full bg-blue-600/[0.07] blur-[120px]" />
+  <div className="pointer-events-none absolute -inset-16 rounded-full bg-blue-600/[0.07] blur-[120px]" />
 
-            <div className="group relative overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[#070b12] shadow-2xl shadow-black/40">
-              <div className="relative aspect-[16/10] w-full">
-                <Image
-                  src={project.image}
-                  alt={`${content.title} preview`}
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 55vw"
-                  className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.035]"
-                />
+  <div className="group relative mx-auto w-full max-w-[620px] overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[#070b12] shadow-2xl shadow-black/40">
+    <div className="relative w-full">
+      <Image
+        src={project.image}
+        alt={`${content.title} preview`}
+        width={705}
+        height={431}
+        priority
+        sizes="(max-width: 1024px) 100vw, 620px"
+        className="h-auto w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+      />
 
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#03060b]/40 via-transparent to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#03060b]/40 via-transparent to-transparent" />
 
-                <div className="pointer-events-none absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-white/[0.08]" />
+      <div className="pointer-events-none absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-white/[0.08]" />
 
-                <div
-                  className={`absolute bottom-5 flex items-center gap-3 rounded-full border border-white/10 bg-black/40 px-4 py-2.5 backdrop-blur-xl ${
-                    isArabic ? "right-5" : "left-5"
-                  }`}
-                >
-                  <span className="h-1.5 w-1.5 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
+      <div
+        className={`absolute bottom-5 flex items-center gap-3 rounded-full border border-white/10 bg-black/40 px-4 py-2.5 backdrop-blur-xl ${
+          isArabic ? "right-5" : "left-5"
+        }`}
+      >
+        <span className="h-1.5 w-1.5 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
 
-                  <span className="text-[10px] uppercase tracking-[0.2em] text-white/60">
-                    {content.shortTitle}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <span className="text-[10px] uppercase tracking-[0.2em] text-white/60">
+          {content.shortTitle}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
       </section>
 
       {/* =========================================================
@@ -334,23 +335,24 @@ export default function ProjectDetails({
           {/* Image */}
 
           <div className="relative p-3 sm:p-5 lg:p-7">
-            <div className="group relative overflow-hidden rounded-[1.75rem] border border-white/[0.07]">
-              <div className="relative aspect-[16/9] w-full">
-                <Image
-                  src={project.image}
-                  alt={`${content.title} showcase`}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 90vw"
-                  className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
-                />
+  <div className="group relative mx-auto w-full max-w-[900px] overflow-hidden rounded-[1.75rem] border border-white/[0.07]">
+    <div className="relative w-full">
+      <Image
+        src={project.image}
+        alt={`${content.title} showcase`}
+        width={705}
+        height={431}
+        sizes="(max-width: 1024px) 100vw, 900px"
+        className="h-auto w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+      />
 
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
 
-                <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.08]" />
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.08]" />
+    </div>
+  </div>
+</div>
+</div>
       </section>
 
       {/* =========================================================
