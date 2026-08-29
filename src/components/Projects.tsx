@@ -11,6 +11,7 @@ import {
   ExternalLink,
   LockKeyhole,
   X,
+  ShoppingBag,
 } from "lucide-react";
 
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -38,6 +39,13 @@ const projects = [
     icon: Sparkles,
     accent: "from-cyan-500/20 via-blue-500/5 to-transparent",
   },
+  {
+    number: "04",
+    slug: "staylik",
+    translationKey: "staylik",
+    icon: ShoppingBag,
+    accent: "from-amber-500/20 via-orange-500/5 to-transparent",
+  },
 ] as const;
 
 export default function Projects() {
@@ -51,7 +59,10 @@ export default function Projects() {
       id="projects"
       className="relative border-t border-white/[0.06]"
     >
-      {/* Background glow */}
+      {/* =========================================================
+          BACKGROUND GLOW
+      ========================================================= */}
+
       <div className="pointer-events-none absolute left-1/2 top-1/3 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-blue-600/[0.035] blur-[140px]" />
 
       <div className="relative mx-auto max-w-[1400px] px-6 py-28 lg:px-10 lg:py-36">
@@ -62,7 +73,8 @@ export default function Projects() {
 
         <div className="grid gap-10 lg:grid-cols-[0.65fr_1.35fr]">
 
-          {/* Left */}
+          {/* LEFT */}
+
           <div>
             <div className="flex items-center gap-3">
               <span className="h-px w-10 bg-blue-500" />
@@ -74,6 +86,7 @@ export default function Projects() {
 
             <h2 className="mt-7 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
               {t.projects.title1}
+
               <br />
 
               <span className="text-white/40">
@@ -82,7 +95,8 @@ export default function Projects() {
             </h2>
           </div>
 
-          {/* Right */}
+          {/* RIGHT */}
+
           <div className="flex items-end">
             <p className="max-w-xl text-base leading-7 text-white/40">
               {t.projects.description}
@@ -164,7 +178,7 @@ export default function Projects() {
                   <div>
                     <div className="flex items-start gap-5">
 
-                      {/* Icon */}
+                      {/* ICON */}
 
                       <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/[0.09] bg-white/[0.035] transition-all duration-500 group-hover:border-blue-500/30 group-hover:bg-blue-500/10">
                         <Icon
@@ -173,24 +187,22 @@ export default function Projects() {
                         />
                       </div>
 
-                      {/* Title */}
+                      {/* TITLE */}
 
                       <div>
                         <div className="flex items-center gap-3">
 
-                          {/* Mobile number */}
+                          {/* MOBILE NUMBER */}
 
                           <span className="font-mono text-[10px] tracking-[0.2em] text-blue-400/70 lg:hidden">
                             {project.number}
                           </span>
 
-                          {/* Category */}
+                          {/* CATEGORY */}
 
                           <span
                             className={`text-[10px] font-medium uppercase tracking-[0.22em] text-white/30 ${
-                              isArabic
-                                ? "tracking-normal"
-                                : ""
+                              isArabic ? "tracking-normal" : ""
                             }`}
                           >
                             {projectTranslation.category}
@@ -203,7 +215,7 @@ export default function Projects() {
                       </div>
                     </div>
 
-                    {/* Description */}
+                    {/* DESCRIPTION */}
 
                     <p className="mt-7 max-w-2xl text-sm leading-7 text-white/40 sm:text-base">
                       {projectTranslation.description}
@@ -243,16 +255,11 @@ export default function Projects() {
                         aria-label="Open StudyNova AI Telegram Bot"
                         className="group/telegram relative flex h-12 items-center gap-3 overflow-hidden rounded-full border border-blue-500/20 bg-blue-500/[0.07] pl-5 pr-2 text-xs font-medium text-blue-300 transition-all duration-500 hover:border-blue-400/40 hover:bg-blue-500/[0.14] hover:text-white hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]"
                       >
-
-                        {/* Shine */}
-
                         <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent transition-transform duration-700 group-hover/telegram:translate-x-full" />
 
                         <span className="relative z-10 whitespace-nowrap">
                           Telegram Bot
                         </span>
-
-                        {/* Telegram Icon */}
 
                         <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border border-blue-400/20 bg-blue-500/10 transition-all duration-500 group-hover/telegram:border-blue-400/40 group-hover/telegram:bg-blue-500/20">
                           <svg
@@ -270,45 +277,39 @@ export default function Projects() {
                       </a>
                     )}
 
-{/* =================================================
-    BOURHAN TELEGRAM BUTTON
-================================================= */}
+                    {/* =================================================
+                        BOURHAN TELEGRAM BUTTON
+                    ================================================= */}
 
-{project.slug === "bourhan-teacher-ai" && (
-  <a
-    href="https://t.me/Bourhan_Bakhash_Teacher_AI_bot"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Open Bourhan Teacher AI Telegram Bot"
-    className="group/telegram relative flex h-12 items-center gap-3 overflow-hidden rounded-full border border-blue-500/20 bg-blue-500/[0.07] pl-5 pr-2 text-xs font-medium text-blue-300 transition-all duration-500 hover:border-blue-400/40 hover:bg-blue-500/[0.14] hover:text-white hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]"
-  >
-    {/* Shine */}
+                    {project.slug === "bourhan-teacher-ai" && (
+                      <a
+                        href="https://t.me/Bourhan_Bakhash_Teacher_AI_bot"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Open Bourhan Teacher AI Telegram Bot"
+                        className="group/telegram relative flex h-12 items-center gap-3 overflow-hidden rounded-full border border-blue-500/20 bg-blue-500/[0.07] pl-5 pr-2 text-xs font-medium text-blue-300 transition-all duration-500 hover:border-blue-400/40 hover:bg-blue-500/[0.14] hover:text-white hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]"
+                      >
+                        <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent transition-transform duration-700 group-hover/telegram:translate-x-full" />
 
-    <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent transition-transform duration-700 group-hover/telegram:translate-x-full" />
+                        <span className="relative z-10 whitespace-nowrap">
+                          Telegram Bot
+                        </span>
 
-    {/* Text */}
-
-    <span className="relative z-10 whitespace-nowrap">
-      Telegram Bot
-    </span>
-
-    {/* Telegram Icon */}
-
-    <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border border-blue-400/20 bg-blue-500/10 transition-all duration-500 group-hover/telegram:border-blue-400/40 group-hover/telegram:bg-blue-500/20">
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        className="h-[15px] w-[15px]"
-        aria-hidden="true"
-      >
-        <path
-          d="M21.5 3.5L18.2 20c-.25 1.17-.9 1.46-1.82.91l-5.03-3.71-2.43 2.34c-.27.27-.5.5-1.02.5l.36-5.12 9.32-8.42c.41-.36-.09-.56-.64-.2L5.42 13.07.48 11.52c-1.07-.34-1.09-1.07.22-1.58L20.02 2.5c.88-.33 1.65.2 1.48 1Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </a>
-)}
+                        <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border border-blue-400/20 bg-blue-500/10 transition-all duration-500 group-hover/telegram:border-blue-400/40 group-hover/telegram:bg-blue-500/20">
+                          <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            className="h-[15px] w-[15px]"
+                            aria-hidden="true"
+                          >
+                            <path
+                              d="M21.5 3.5L18.2 20c-.25 1.17-.9 1.46-1.82.91l-5.03-3.71-2.43 2.34c-.27.27-.5.5-1.02.5l.36-5.12 9.32-8.42c.41-.36-.09-.56-.64-.2L5.42 13.07.48 11.52c-1.07-.34-1.09-1.07.22-1.58L20.02 2.5c.88-.33 1.65.2 1.48 1Z"
+                              fill="currentColor"
+                            />
+                          </svg>
+                        </span>
+                      </a>
+                    )}
 
                     {/* =================================================
                         VERTEXOS SYSTEM WEB BUTTON
@@ -321,16 +322,11 @@ export default function Projects() {
                         aria-label="Open VertexOS System information"
                         className="group/system relative flex h-12 items-center gap-3 overflow-hidden rounded-full border border-indigo-500/20 bg-indigo-500/[0.07] pl-5 pr-2 text-xs font-medium text-indigo-300 transition-all duration-500 hover:border-indigo-400/40 hover:bg-indigo-500/[0.14] hover:text-white hover:shadow-[0_0_30px_rgba(99,102,241,0.15)]"
                       >
-
-                        {/* Shine */}
-
                         <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent transition-transform duration-700 group-hover/system:translate-x-full" />
 
                         <span className="relative z-10 whitespace-nowrap">
                           System Web
                         </span>
-
-                        {/* Lock Icon */}
 
                         <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border border-indigo-400/20 bg-indigo-500/10 transition-all duration-500 group-hover/system:border-indigo-400/40 group-hover/system:bg-indigo-500/20">
                           <LockKeyhole
@@ -342,6 +338,30 @@ export default function Projects() {
                     )}
 
                     {/* =================================================
+                        STAYLIK STORE WEB BUTTON
+                    ================================================= */}
+
+                    {project.slug === "staylik" && (
+                      <a
+                        href="https://staylik-store.vercel.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Open STAYLIK Store"
+                        className="group/store relative flex h-12 items-center gap-3 overflow-hidden rounded-full border border-amber-500/20 bg-amber-500/[0.07] pl-5 pr-2 text-xs font-medium text-amber-300 transition-all duration-500 hover:border-amber-400/40 hover:bg-amber-500/[0.14] hover:text-white hover:shadow-[0_0_30px_rgba(245,158,11,0.15)]"
+                      >
+                        <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent transition-transform duration-700 group-hover/store:translate-x-full" />
+
+                        <span className="relative z-10 whitespace-nowrap">
+                          Store Web
+                        </span>
+
+                        <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border border-amber-400/20 bg-amber-500/10 transition-all duration-500 group-hover/store:border-amber-400/40 group-hover/store:bg-amber-500/20">
+                          <ExternalLink size={14} />
+                        </span>
+                      </a>
+                    )}
+
+                    {/* =================================================
                         VIEW PROJECT BUTTON
                     ================================================= */}
 
@@ -350,9 +370,6 @@ export default function Projects() {
                       aria-label={`${t.projects.viewProject} ${projectTranslation.title}`}
                       className="group/button relative flex h-12 items-center gap-3 overflow-hidden rounded-full border border-white/[0.10] bg-white/[0.025] pl-5 pr-2 text-xs font-medium text-white/55 transition-all duration-500 hover:border-blue-400/40 hover:bg-blue-500/[0.10] hover:text-white hover:shadow-[0_0_30px_rgba(59,130,246,0.12)]"
                     >
-
-                      {/* Button shine */}
-
                       <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent transition-transform duration-700 group-hover/button:translate-x-full" />
 
                       <span className="relative z-10 whitespace-nowrap">
@@ -402,7 +419,6 @@ export default function Projects() {
           }}
           className="mt-12 flex flex-col items-start justify-between gap-5 border-t border-white/[0.06] pt-8 sm:flex-row sm:items-center"
         >
-
           <div>
             <p className="text-sm text-white/40">
               {t.projects.haveProject}
@@ -462,7 +478,6 @@ export default function Projects() {
               onClick={(event) => event.stopPropagation()}
               className="relative w-full max-w-md overflow-hidden rounded-[2rem] border border-white/[0.10] bg-[#080d16] p-8 shadow-2xl shadow-black/60"
             >
-
               {/* Glow */}
 
               <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-indigo-600/10 blur-[80px]" />

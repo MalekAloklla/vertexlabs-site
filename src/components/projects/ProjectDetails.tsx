@@ -34,6 +34,12 @@ const projectData = {
     image: "/projects/bourhan.jpg",
     icon: Sparkles,
   },
+
+  staylik: {
+    number: "04",
+    image: "/projects/staylik.png",
+    icon: Sparkles,
+  },
 } as const;
 
 type ProjectSlug = keyof typeof projectData;

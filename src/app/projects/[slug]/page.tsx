@@ -6,6 +6,7 @@ const validProjects = [
   "studynova-ai",
   "vertexos",
   "bourhan-teacher-ai",
+  "staylik",
 ] as const;
 
 type ProjectSlug = (typeof validProjects)[number];

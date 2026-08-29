@@ -95,6 +95,14 @@ export const translations = {
         tags: ["Telegram", "AI", "TypeScript"],
       },
 
+      staylik: {
+  category: "E-COMMERCE / FASHION",
+  title: "STAYLIK",
+  description:
+    "A modern luxury streetwear e-commerce experience built to showcase products and deliver a smooth shopping journey.",
+  tags: ["E-Commerce", "Next.js", "Supabase"],
+},
+
       viewProject: "View Project",
       haveProject: "Have a project in mind?",
       buildTogether: "Let's build something exceptional together.",
@@ -224,6 +232,35 @@ export const translations = {
           "AI",
         ],
       },
+
+      "staylik": {
+  category: "E-COMMERCE / FASHION",
+  title: "STAYLIK",
+  shortTitle: "STAYLIK",
+
+  description:
+    "A modern luxury streetwear e-commerce experience built to showcase products and deliver a smooth shopping journey.",
+
+  longDescription:
+    "STAYLIK is a modern e-commerce platform created for a luxury streetwear brand. The experience focuses on premium visual design, product presentation, smooth navigation, and a seamless shopping experience across devices.",
+
+  features: [
+    "Modern e-commerce experience",
+    "Product showcase",
+    "Shopping cart",
+    "Responsive design",
+    "Supabase product management",
+    "Premium brand experience",
+  ],
+
+  technologies: [
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "Supabase",
+    "Framer Motion",
+  ],
+},
     },
 
     about: {
@@ -492,6 +529,14 @@ export const translations = {
         tags: ["Telegram", "AI", "TypeScript"],
       },
 
+      staylik: {
+  category: "تجارة إلكترونية / أزياء",
+  title: "STAYLIK",
+  description:
+    "تجربة متجر إلكتروني عصرية للأزياء الفاخرة، مصممة لعرض المنتجات وتقديم تجربة تسوق سلسة ومميزة.",
+  tags: ["متجر إلكتروني", "Next.js", "Supabase"],
+},
+
       viewProject: "عرض المشروع",
       haveProject: "لديك مشروع في ذهنك؟",
       buildTogether: "لنبنِ شيئًا استثنائيًا معًا.",
@@ -621,6 +666,35 @@ export const translations = {
           "AI",
         ],
       },
+
+      "staylik": {
+  category: "تجارة إلكترونية / أزياء",
+  title: "STAYLIK",
+  shortTitle: "STAYLIK",
+
+  description:
+    "تجربة متجر إلكتروني عصرية للأزياء الفاخرة، مصممة لعرض المنتجات وتقديم تجربة تسوق سلسة ومميزة.",
+
+  longDescription:
+    "STAYLIK هو متجر إلكتروني عصري تم تطويره لعلامة أزياء فاخرة بطابع Streetwear. تركز التجربة على التصميم البصري الفاخر، عرض المنتجات بشكل مميز، سهولة التصفح، وتوفير تجربة تسوق سلسة ومتجاوبة على مختلف الأجهزة.",
+
+  features: [
+    "تجربة متجر إلكتروني عصرية",
+    "عرض المنتجات",
+    "سلة التسوق",
+    "تصميم متجاوب",
+    "إدارة المنتجات عبر Supabase",
+    "تجربة فاخرة للعلامة التجارية",
+  ],
+
+  technologies: [
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "Supabase",
+    "Framer Motion",
+  ],
+},
     },
 
     about: {
