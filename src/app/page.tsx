@@ -27,6 +27,7 @@ import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { useTranslation } from "@/i18n/useTranslation";
 import FAQ from "@/components/FAQ";
+import TeamMemberModal from "@/components/TeamMemberModal";
 
 const services = [
   {
@@ -78,13 +79,26 @@ const process = [
   },
 ];
 
+type TeamMember = {
+  name: string;
+  role: string;
+  description: string;
+  education: string;
+  image?: string;
+  linkedin?: string;
+  instagram?: string;
+  github?: string;
+  badge?: string;
+};
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+const [selectedMember, setSelectedMember] = useState<string | null>(null);
   const { language, setLanguage } = useLanguage();
 const { t } = useTranslation();
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#03060b] text-white selection:bg-blue-500/30">
+    <main className="min-h-screen overflow-x-hidden bg-[#03060b] text-white selection:bg-blue-500/30">
       
       {/* =========================================================
           BACKGROUND
@@ -108,144 +122,167 @@ const { t } = useTranslation();
       </div>
 
       {/* =========================================================
-          NAVBAR
-      ========================================================= */}
+    NAVBAR
+========================================================= */}
 
-      <nav className="relative z-50 mx-auto flex h-24 w-full max-w-[1400px] items-center justify-between px-6 lg:px-10">
-        <a href="#home" className="group flex items-center">
-          <div className="relative h-14 w-44">
-            <Image
-              src="/logo/vertex-logo.png"
-              alt="Vertex Labs"
-              fill
-              priority
-              sizes="176px"
-              className="object-contain object-left"
-            />
-          </div>
+<nav className="fixed inset-x-0 top-0 z-[100] border-b border-white/[0.06] bg-[#03060b]/80 backdrop-blur-xl">
+  <div className="mx-auto flex h-24 w-full max-w-[1400px] items-center justify-between px-6 lg:px-10">
+
+    {/* =====================================================
+        LOGO
+    ===================================================== */}
+
+    <a href="#home" className="group flex items-center">
+      <div className="relative h-14 w-44">
+        <Image
+          src="/logo/vertex-logo.png"
+          alt="Vertex Labs"
+          fill
+          priority
+          sizes="176px"
+          className="object-contain object-left"
+        />
+      </div>
+    </a>
+
+    {/* =====================================================
+        DESKTOP NAVIGATION
+    ===================================================== */}
+
+    <div className="hidden items-center gap-9 md:flex">
+      {[
+        { label: t.nav.home, id: "home" },
+        { label: t.nav.services, id: "services" },
+        { label: t.nav.projects, id: "projects" },
+        { label: t.nav.about, id: "about" },
+        { label: t.nav.team, id: "team" },
+        { label: t.nav.contact, id: "contact" },
+      ].map((item, index) => (
+        <a
+          key={item.id}
+          href={`#${item.id}`}
+          className={`relative text-sm transition-colors ${
+            index === 0
+              ? "text-white"
+              : "text-white/50 hover:text-white"
+          }`}
+        >
+          {item.label}
+
+          {index === 0 && (
+            <span className="absolute -bottom-3 left-1/2 h-[2px] w-5 -translate-x-1/2 rounded-full bg-blue-500" />
+          )}
         </a>
+      ))}
+    </div>
 
-        {/* Desktop navigation */}
+    {/* =====================================================
+        LANGUAGE SWITCHER
+    ===================================================== */}
 
-        <div className="hidden items-center gap-9 md:flex">
+    <div className="hidden items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.025] p-1 md:flex">
+      <button
+        onClick={() => setLanguage("en")}
+        className={`rounded-full px-3 py-1.5 text-[10px] font-medium tracking-[0.12em] transition-all ${
+          language === "en"
+            ? "bg-white text-black"
+            : "text-white/35 hover:text-white/70"
+        }`}
+      >
+        EN
+      </button>
+
+      <button
+        onClick={() => setLanguage("ar")}
+        className={`rounded-full px-3 py-1.5 text-[10px] font-medium tracking-[0.12em] transition-all ${
+          language === "ar"
+            ? "bg-white text-black"
+            : "text-white/35 hover:text-white/70"
+        }`}
+      >
+        AR
+      </button>
+    </div>
+
+    {/* =====================================================
+        DESKTOP CTA
+    ===================================================== */}
+
+    <a
+      href="#contact"
+      className="group hidden items-center gap-2 rounded-full border border-white/15 bg-white/[0.025] px-5 py-3 text-sm text-white transition-all hover:border-blue-500/50 hover:bg-blue-500/10 md:flex"
+    >
+      Let's Work Together
+
+      <ArrowUpRight
+        size={16}
+        className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+      />
+    </a>
+
+    {/* =====================================================
+        MOBILE MENU BUTTON
+    ===================================================== */}
+
+    <button
+      onClick={() => setMenuOpen(!menuOpen)}
+      className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] md:hidden"
+      aria-label="Toggle menu"
+    >
+      {menuOpen ? <X size={20} /> : <Menu size={20} />}
+    </button>
+
+    {/* =====================================================
+        MOBILE MENU
+    ===================================================== */}
+
+    {menuOpen && (
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="absolute left-4 right-4 top-20 rounded-2xl border border-white/10 bg-[#080d16]/95 p-5 shadow-2xl backdrop-blur-xl md:hidden"
+      >
+        <div className="flex flex-col gap-1">
           {[
-  { label: t.nav.home, id: "home" },
-  { label: t.nav.services, id: "services" },
-  { label: t.nav.projects, id: "projects" },
-  { label: t.nav.about, id: "about" },
-  { label: t.nav.team, id: "team" },
-  { label: t.nav.contact, id: "contact" },
-].map((item, index) => (
-  <a
-    key={item.id}
-    href={`#${item.id}`}
-    className={`relative text-sm transition-colors ${
-      index === 0
-        ? "text-white"
-        : "text-white/50 hover:text-white"
-    }`}
-  >
-    {item.label}
-
-    {index === 0 && (
-      <span className="absolute -bottom-3 left-1/2 h-[2px] w-5 -translate-x-1/2 rounded-full bg-blue-500" />
-    )}
-  </a>
-))}
+            { label: t.nav.home, id: "home" },
+            { label: t.nav.services, id: "services" },
+            { label: t.nav.projects, id: "projects" },
+            { label: t.nav.about, id: "about" },
+            { label: t.nav.team, id: "team" },
+            { label: t.nav.contact, id: "contact" },
+          ].map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={() => setMenuOpen(false)}
+              className="rounded-xl px-4 py-3 text-sm text-white/70 transition hover:bg-white/5 hover:text-white"
+            >
+              {item.label}
+            </a>
+          ))}
         </div>
-
-{/* Language Switcher */}
-
-<div className="hidden items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.025] p-1 md:flex">
-  <button
-    onClick={() => setLanguage("en")}
-    className={`rounded-full px-3 py-1.5 text-[10px] font-medium tracking-[0.12em] transition-all ${
-      language === "en"
-        ? "bg-white text-black"
-        : "text-white/35 hover:text-white/70"
-    }`}
-  >
-    EN
-  </button>
-
-  <button
-    onClick={() => setLanguage("ar")}
-    className={`rounded-full px-3 py-1.5 text-[10px] font-medium tracking-[0.12em] transition-all ${
-      language === "ar"
-        ? "bg-white text-black"
-        : "text-white/35 hover:text-white/70"
-    }`}
-  >
-    AR
-  </button>
-</div>
-
-        {/* Desktop CTA */}
 
         <a
           href="#contact"
-          className="group hidden items-center gap-2 rounded-full border border-white/15 bg-white/[0.025] px-5 py-3 text-sm text-white transition-all hover:border-blue-500/50 hover:bg-blue-500/10 md:flex"
+          onClick={() => setMenuOpen(false)}
+          className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-medium transition hover:bg-blue-500"
         >
           Let's Work Together
-          <ArrowUpRight
-            size={16}
-            className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-          />
+          <ArrowRight size={16} />
         </a>
-
-        {/* Mobile menu button */}
-
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] md:hidden"
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
-
-        {/* Mobile menu */}
-
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="absolute left-4 right-4 top-20 rounded-2xl border border-white/10 bg-[#080d16]/95 p-5 shadow-2xl backdrop-blur-xl md:hidden"
-          >
-            <div className="flex flex-col gap-1">
-              {["Home", "Services", "Projects", "About", "Contact"].map(
-                (item) => (
-                  <a
-                    key={item}
-                    href={`#${item.toLowerCase()}`}
-                    onClick={() => setMenuOpen(false)}
-                    className="rounded-xl px-4 py-3 text-sm text-white/70 transition hover:bg-white/5 hover:text-white"
-                  >
-                    {item}
-                  </a>
-                ),
-              )}
-            </div>
-
-            <a
-              href="#contact"
-              onClick={() => setMenuOpen(false)}
-              className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-medium"
-            >
-              Let's Work Together
-              <ArrowRight size={16} />
-            </a>
-          </motion.div>
-        )}
-      </nav>
+      </motion.div>
+    )}
+  </div>
+</nav>
 
       {/* =========================================================
           HERO
       ========================================================= */}
 
       <section
-        id="home"
-        className="relative mx-auto flex min-h-[calc(100vh-96px)] w-full max-w-[1400px] items-center px-6 pb-20 pt-10 lg:px-10"
-      >
+  id="home"
+  className="relative mx-auto flex min-h-[calc(100vh-96px)] w-full max-w-[1400px] items-center px-6 pb-20 pt-28 lg:px-10"
+>
         <div className="grid w-full items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           {/* Hero left */}
 
@@ -639,7 +676,9 @@ const { t } = useTranslation();
   id="team"
   className="relative mx-auto max-w-[1400px] px-6 py-24 lg:px-10 lg:py-32"
 >
-  {/* Section Header */}
+  {/* =====================================================
+      SECTION HEADER
+  ===================================================== */}
 
   <motion.div
     initial={{ opacity: 0, y: 25 }}
@@ -652,24 +691,28 @@ const { t } = useTranslation();
       <span className="h-px w-10 bg-blue-500" />
 
       <span className="text-xs uppercase tracking-[0.25em] text-blue-400">
-  {t.team.eyebrow}
-</span>
+        {t.team.eyebrow}
+      </span>
     </div>
 
     <h2 className="mt-6 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">
-  {t.team.title1}
-  <br />
-  <span className="text-white/35">
-    {t.team.title2}
-  </span>
-</h2>
+      {t.team.title1}
+      <br />
+
+      <span className="text-white/35">
+        {t.team.title2}
+      </span>
+    </h2>
 
     <p className="mt-5 max-w-xl text-base leading-7 text-white/40">
-  {t.team.description}
-</p>
+      {t.team.description}
+    </p>
   </motion.div>
 
-  {/* Team Grid */}
+
+  {/* =====================================================
+      TEAM GRID
+  ===================================================== */}
 
   <div className="mx-auto mt-14 grid max-w-[1120px] gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
@@ -682,11 +725,20 @@ const { t } = useTranslation();
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6 }}
-      className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025] transition-all duration-500 hover:-translate-y-1 hover:border-blue-500/25"
+      onClick={() => setSelectedMember("malek")}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          setSelectedMember("malek");
+        }
+      }}
+      className="group relative cursor-pointer overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025] transition-all duration-500 hover:-translate-y-1 hover:border-blue-500/30 hover:bg-white/[0.04]"
     >
       {/* Image */}
 
-      <div className="relative aspect-[4/4.25] overflow-hidden bg-[#080d16]">
+      <div className="relative h-[300px] sm:h-[320px] overflow-hidden bg-[#080d16]">
+
         <Image
           src="/team/malek.png"
           alt="Malek Anas Aloklla"
@@ -705,8 +757,8 @@ const { t } = useTranslation();
           <span className="h-1.5 w-1.5 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
 
           <span className="text-[8px] uppercase tracking-[0.2em] text-white/60">
-  {t.team.founder.badge}
-</span>
+            {t.team.founder.badge}
+          </span>
         </div>
 
         {/* Number */}
@@ -714,52 +766,43 @@ const { t } = useTranslation();
         <span className="absolute right-4 top-4 font-mono text-[9px] tracking-[0.2em] text-white/25">
           01
         </span>
+
+        {/* View Profile */}
+
+        <div className="absolute bottom-4 right-4 translate-y-3 rounded-full border border-white/10 bg-black/40 px-3 py-2 text-[9px] text-white/60 opacity-0 backdrop-blur-xl transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+          View Profile
+        </div>
       </div>
 
-      {/* Content */}
+
+      {/* Card Content */}
 
       <div className="p-5">
 
         <h3 className="text-lg font-medium tracking-[-0.02em]">
-  {t.team.founder.name}
-</h3>
+          {t.team.founder.name}
+        </h3>
 
         <p className="mt-1 text-xs text-blue-400">
-  {t.team.founder.role}
-</p>
+          {t.team.founder.role}
+        </p>
 
-        <p className="mt-3 text-xs leading-5 text-white/40">
-  {t.team.founder.description}
-</p>
-        <div className="mt-4 flex items-center justify-between gap-3">
+        {/* Short Bio */}
+
+        <p className="mt-3 line-clamp-2 text-xs leading-5 text-white/40">
+          {t.team.founder.description}
+        </p>
+
+        <div className="mt-5 flex items-center justify-between">
 
           <span className="text-[8px] uppercase tracking-[0.16em] text-white/20">
-  {t.team.founder.education}
-</span>
+            Founder • Vertex Labs
+          </span>
 
-          <div className="flex items-center gap-1.5">
+          <span className="text-[9px] uppercase tracking-[0.15em] text-blue-400/60 transition-colors group-hover:text-blue-400">
+            View →
+          </span>
 
-            <a
-              href="https://www.linkedin.com/in/malek-aloklla-091950309/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.02] text-[9px] font-semibold text-white/35 transition-all duration-300 hover:border-blue-500/30 hover:bg-blue-500/[0.06] hover:text-blue-400"
-            >
-              in
-            </a>
-
-            <a
-              href="https://github.com/MalekAloklla?tab=repositories"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.02] text-[9px] font-semibold text-white/35 transition-all duration-300 hover:border-blue-500/30 hover:bg-blue-500/[0.06] hover:text-blue-400"
-            >
-              GH
-            </a>
-
-          </div>
         </div>
       </div>
     </motion.div>
@@ -785,17 +828,19 @@ const { t } = useTranslation();
       </div>
 
       <div className="p-5">
+
         <h3 className="text-lg font-medium text-white/25">
-  {t.team.placeholder.title}
-</h3>
+          {t.team.placeholder.title}
+        </h3>
 
-<p className="mt-1 text-xs text-white/20">
-  {t.team.placeholder.role}
-</p>
+        <p className="mt-1 text-xs text-white/20">
+          {t.team.placeholder.role}
+        </p>
 
-<p className="mt-3 text-xs leading-5 text-white/20">
-  {t.team.placeholder.description}
-</p>
+        <p className="mt-3 text-xs leading-5 text-white/20">
+          {t.team.placeholder.description}
+        </p>
+
       </div>
     </motion.div>
 
@@ -812,29 +857,374 @@ const { t } = useTranslation();
       className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025]"
     >
       <div className="relative aspect-[4/4.25] overflow-hidden bg-[#080d16]">
+
         <div className="absolute inset-0 flex items-center justify-center">
           <span className="font-mono text-3xl text-white/[0.04]">
             03
           </span>
         </div>
+
       </div>
 
       <div className="p-5">
+
         <h3 className="text-lg font-medium text-white/25">
-  {t.team.placeholder.title}
-</h3>
+          {t.team.placeholder.title}
+        </h3>
 
-<p className="mt-1 text-xs text-white/20">
-  {t.team.placeholder.role}
-</p>
+        <p className="mt-1 text-xs text-white/20">
+          {t.team.placeholder.role}
+        </p>
 
-<p className="mt-3 text-xs leading-5 text-white/20">
-  {t.team.placeholder.description}
-</p>
+        <p className="mt-3 text-xs leading-5 text-white/20">
+          {t.team.placeholder.description}
+        </p>
+
       </div>
     </motion.div>
 
   </div>
+
+
+  {/* =====================================================
+      PROFILE MODAL
+  ===================================================== */}
+
+  {selectedMember === "malek" && (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6"
+      onClick={() => setSelectedMember(null)}
+    >
+
+      {/* Backdrop */}
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="absolute inset-0 bg-black/80 backdrop-blur-xl"
+      />
+
+
+      {/* Modal */}
+
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 35,
+          scale: 0.96,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          scale: 1,
+        }}
+        transition={{
+          duration: 0.4,
+          ease: "easeOut",
+        }}
+        onClick={(e) => e.stopPropagation()}
+        className="relative z-10 max-h-[92vh] w-full max-w-5xl overflow-y-auto rounded-[2rem] border border-white/[0.1] bg-[#080d16] shadow-2xl shadow-black/60"
+      >
+
+        {/* =================================================
+            CLOSE
+        ================================================= */}
+
+        <button
+          onClick={() => setSelectedMember(null)}
+          aria-label="Close profile"
+          className="absolute right-5 top-5 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/40 text-white/50 backdrop-blur-xl transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
+        >
+          <X size={18} />
+        </button>
+
+
+        {/* =================================================
+            PROFILE LAYOUT
+        ================================================= */}
+
+        <div className="grid md:grid-cols-[0.8fr_1.2fr]">
+
+
+          {/* =================================================
+              PROFILE IMAGE
+          ================================================= */}
+
+          <div className="relative min-h-[430px] overflow-hidden bg-[#050912] md:min-h-[650px]">
+
+            <Image
+              src="/team/malek.png"
+              alt="Malek Anas Aloklla"
+              fill
+              sizes="(max-width: 768px) 100vw, 40vw"
+              className="object-cover object-center"
+            />
+
+            {/* Image Glow */}
+
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080d16] via-transparent to-transparent" />
+
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent to-[#080d16]/40" />
+
+
+            {/* Founder Badge */}
+
+            <div className="absolute bottom-6 left-6 flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-4 py-2 backdrop-blur-xl">
+
+              <span className="h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_12px_rgba(59,130,246,0.8)]" />
+
+              <span className="text-[9px] uppercase tracking-[0.2em] text-white/60">
+                {t.team.founder.badge}
+              </span>
+
+            </div>
+
+          </div>
+
+
+          {/* =================================================
+              PROFILE DETAILS
+          ================================================= */}
+
+          <div className="p-7 sm:p-10 lg:p-12">
+
+            {/* Header */}
+
+            <div className="flex items-center gap-3">
+
+              <span className="h-px w-8 bg-blue-500" />
+
+              <span className="text-[10px] uppercase tracking-[0.3em] text-blue-400">
+                Vertex Labs
+              </span>
+
+            </div>
+
+
+            {/* Name */}
+
+            <h3 className="mt-6 text-3xl font-semibold tracking-[-0.05em] sm:text-4xl lg:text-5xl">
+              {t.team.founder.name}
+            </h3>
+
+
+            {/* Role */}
+
+            <p className="mt-3 text-sm text-blue-400">
+              {t.team.founder.role}
+            </p>
+
+
+            {/* Divider */}
+
+            <div className="my-8 h-px w-full bg-white/[0.07]" />
+
+
+            {/* About */}
+
+            <div>
+
+              <p className="text-[9px] uppercase tracking-[0.25em] text-white/25">
+                About
+              </p>
+
+              <p className="mt-4 text-sm leading-7 text-white/55">
+                Malek Anas Aloklla is the Founder of Vertex Labs, focused on
+                building modern digital products, intelligent systems,
+                AI-powered solutions, and custom software.
+
+                <br />
+                <br />
+
+                He works across the product development process — from
+                transforming ideas into clear digital experiences to
+                engineering, testing, and launching scalable solutions.
+
+                <br />
+                <br />
+
+                Through Vertex Labs, his goal is to help businesses and
+                individuals turn ambitious ideas into reliable, modern, and
+                impactful digital products.
+              </p>
+
+            </div>
+
+
+            {/* =================================================
+                EXPERTISE
+            ================================================= */}
+
+            <div className="mt-9">
+
+              <p className="text-[9px] uppercase tracking-[0.25em] text-white/25">
+                Expertise
+              </p>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+
+                {[
+                  "Web Development",
+                  "AI Solutions",
+                  "Next.js",
+                  "React",
+                  "TypeScript",
+                  "Software Development",
+                  "Automation",
+                  "UI / UX",
+                ].map((skill) => (
+                  <span
+                    key={skill}
+                    className="rounded-full border border-white/[0.08] bg-white/[0.025] px-3 py-2 text-[10px] text-white/40 transition-colors hover:border-blue-500/20 hover:text-blue-400"
+                  >
+                    {skill}
+                  </span>
+                ))}
+
+              </div>
+
+            </div>
+
+
+            {/* =================================================
+                EDUCATION
+            ================================================= */}
+
+            <div className="mt-9">
+
+              <p className="text-[9px] uppercase tracking-[0.25em] text-white/25">
+                Education
+              </p>
+
+              <div className="mt-4 rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5">
+
+                <p className="text-sm leading-6 text-white/60">
+                  {t.team.founder.education}
+                </p>
+
+              </div>
+
+            </div>
+
+
+            {/* =================================================
+                SOCIALS
+            ================================================= */}
+
+            <div className="mt-9">
+
+              <p className="text-[9px] uppercase tracking-[0.25em] text-white/25">
+                Connect
+              </p>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+
+
+                {/* LinkedIn */}
+
+                <a
+                  href="https://www.linkedin.com/in/malek-aloklla-091950309/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.025] px-4 py-3 text-xs text-white/45 transition-all hover:border-blue-500/30 hover:bg-blue-500/[0.05] hover:text-blue-400"
+                >
+
+                  <span className="font-semibold">
+                    in
+                  </span>
+
+                  <span>
+                    LinkedIn
+                  </span>
+
+                  <ArrowUpRight
+                    size={13}
+                    className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  />
+
+                </a>
+
+
+                {/* GitHub */}
+
+                <a
+                  href="https://github.com/MalekAloklla?tab=repositories"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.025] px-4 py-3 text-xs text-white/45 transition-all hover:border-blue-500/30 hover:bg-blue-500/[0.05] hover:text-blue-400"
+                >
+
+                  <span className="font-semibold">
+                    GH
+                  </span>
+
+                  <span>
+                    GitHub
+                  </span>
+
+                  <ArrowUpRight
+                    size={13}
+                    className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  />
+
+                </a>
+
+
+                {/* Instagram */}
+
+                <a
+                  href="https://www.instagram.com/1mlo0ok_/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.025] px-4 py-3 text-xs text-white/45 transition-all hover:border-blue-500/30 hover:bg-blue-500/[0.05] hover:text-blue-400"
+                >
+
+                  <span className="font-semibold">
+                    IG
+                  </span>
+
+                  <span>
+                    Instagram
+                  </span>
+
+                  <ArrowUpRight
+                    size={13}
+                    className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  />
+
+                </a>
+
+              </div>
+
+            </div>
+
+
+            {/* =================================================
+                FOOTER
+            ================================================= */}
+
+            <div className="mt-10 flex items-center justify-between border-t border-white/[0.07] pt-6">
+
+              <span className="text-[9px] uppercase tracking-[0.2em] text-white/20">
+                Vertex Labs
+              </span>
+
+              <button
+                onClick={() => setSelectedMember(null)}
+                className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-white/30 transition-colors hover:text-white"
+              >
+                Close
+                <X size={13} />
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  )}
+
 </section>
 
       {/* =========================================================

@@ -28,3 +28,36 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* =========================================================
+   VERTEX LABS — CUSTOM SCROLLBAR
+========================================================= */
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(59, 130, 246, 0.45) #03060b;
+}
+
+/* Chrome / Edge / Safari */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #03060b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  border: 2px solid #03060b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.65);
+}
+
+::-webkit-scrollbar-corner {
+  background: #03060b;
+}
