@@ -66,6 +66,10 @@ export const metadata: Metadata = {
     },
   },
 
+  verification: {
+    google: "dWDzP65uZW6V9I_WXLgVon5iacXTGytAsrDY9Ol62MI",
+  },
+
   icons: {
     icon: "/favicon.ico",
   },
