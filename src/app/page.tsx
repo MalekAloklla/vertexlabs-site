@@ -1169,31 +1169,6 @@ const { t } = useTranslation();
 
                 </a>
 
-
-                {/* Instagram */}
-
-                <a
-                  href="https://www.instagram.com/1mlo0ok_/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.025] px-4 py-3 text-xs text-white/45 transition-all hover:border-blue-500/30 hover:bg-blue-500/[0.05] hover:text-blue-400"
-                >
-
-                  <span className="font-semibold">
-                    IG
-                  </span>
-
-                  <span>
-                    Instagram
-                  </span>
-
-                  <ArrowUpRight
-                    size={13}
-                    className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                  />
-
-                </a>
-
               </div>
 
             </div>
