@@ -8,6 +8,7 @@ const validProjects = [
   "vertexos",
   "bourhan-teacher-ai",
   "staylik",
+  "alasrar-al-thahabeya",
 ] as const;
 
 type ProjectSlug = (typeof validProjects)[number];
@@ -42,6 +43,12 @@ const projectSEO = {
     description:
       "STAYLIK is a modern luxury streetwear e-commerce experience built with a bold visual identity and a fast, responsive shopping experience.",
   },
+
+  "alasrar-al-thahabeya": {
+  title: "Al Asrar Al Thahabeya — Technical Services",
+  description:
+    "Al Asrar Al Thahabeya is a Dubai-based technical services company providing professional solutions for villas, residential properties, and commercial spaces.",
+},
 } as const;
 
 export async function generateMetadata({

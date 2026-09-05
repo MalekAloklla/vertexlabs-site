@@ -11,6 +11,7 @@ import {
   Sparkles,
   Code2,
   ExternalLink,
+  Building2,
 } from "lucide-react";
 
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -40,6 +41,12 @@ const projectData = {
     image: "/projects/staylik.png",
     icon: Sparkles,
   },
+
+  "alasrar-al-thahabeya": {
+  number: "05",
+  image: "/projects/alasrar.png",
+  icon: Building2,
+},
 } as const;
 
 type ProjectSlug = keyof typeof projectData;
@@ -150,11 +157,17 @@ export default function ProjectDetails({
             {/* TAGS */}
 
             <div className="mt-8 flex max-w-xl flex-wrap gap-2">
-              {t.projects[slug === "studynova-ai"
-                ? "studynova"
-                : slug === "vertexos"
-                  ? "vertexos"
-                  : "bourhan"].tags.map((tag) => (
+              {t.projects[
+  slug === "studynova-ai"
+    ? "studynova"
+    : slug === "vertexos"
+      ? "vertexos"
+      : slug === "bourhan-teacher-ai"
+        ? "bourhan"
+        : slug === "staylik"
+          ? "staylik"
+          : "alasrar"
+].tags.map((tag) => (
                 <span
                   key={tag}
                   className="rounded-full border border-white/[0.08] bg-white/[0.025] px-4 py-2 text-[10px] uppercase tracking-[0.12em] text-white/40 transition-all duration-300 hover:border-blue-500/25 hover:bg-blue-500/[0.04] hover:text-white/70"

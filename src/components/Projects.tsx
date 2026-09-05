@@ -5,6 +5,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowUpRight,
+  ArrowLeft,
+  ArrowRight,
   BrainCircuit,
   Layers3,
   Sparkles,
@@ -12,6 +14,7 @@ import {
   LockKeyhole,
   X,
   ShoppingBag,
+  Building2,
 } from "lucide-react";
 
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -46,6 +49,13 @@ const projects = [
     icon: ShoppingBag,
     accent: "from-amber-500/20 via-orange-500/5 to-transparent",
   },
+  {
+  number: "05",
+  slug: "alasrar-al-thahabeya",
+  translationKey: "alasrar",
+  icon: Building2,
+  accent: "from-slate-500/20 via-blue-500/5 to-transparent",
+},
 ] as const;
 
 export default function Projects() {
@@ -53,6 +63,21 @@ export default function Projects() {
   const { t } = useTranslation();
 
   const [showPrivateSystem, setShowPrivateSystem] = useState(false);
+  
+  const [currentProject, setCurrentProject] = useState(0);
+const [direction, setDirection] = useState(0);
+
+const nextProject = () => {
+  setDirection(1);
+  setCurrentProject((prev) => (prev + 1) % projects.length);
+};
+
+const previousProject = () => {
+  setDirection(-1);
+  setCurrentProject(
+    (prev) => (prev - 1 + projects.length) % projects.length
+  );
+};
 
   return (
     <section
@@ -108,9 +133,30 @@ export default function Projects() {
             PROJECTS
         ========================================================= */}
 
-        <div className="mt-16 space-y-5">
+        <div className="relative mt-16">
 
-          {projects.map((project, index) => {
+  {/* LEFT ARROW */}
+<button
+  type="button"
+  onClick={previousProject}
+  aria-label="Previous project"
+  className="absolute left-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/[0.10] bg-[#080d16]/90 text-white/40 backdrop-blur-md transition-all duration-300 hover:border-blue-400/40 hover:bg-blue-500/10 hover:text-white sm:left-[-28px] sm:h-[52px] sm:w-[52px]"
+>
+  <ArrowLeft size={18} />
+</button>
+
+{/* RIGHT ARROW */}
+<button
+  type="button"
+  onClick={nextProject}
+  aria-label="Next project"
+  className="absolute right-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/[0.10] bg-[#080d16]/90 text-white/40 backdrop-blur-md transition-all duration-300 hover:border-blue-400/40 hover:bg-blue-500/10 hover:text-white sm:right-[-28px] sm:h-[52px] sm:w-[52px]"
+>
+  <ArrowRight size={18} />
+</button>
+
+          <AnimatePresence mode="wait" initial={false}>
+  {projects.slice(currentProject, currentProject + 1).map((project) => {
             const Icon = project.icon;
 
             const projectTranslation =
@@ -120,21 +166,21 @@ export default function Projects() {
               <motion.article
                 key={project.number}
                 initial={{
-                  opacity: 0,
-                  y: 35,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                  amount: 0.15,
-                }}
-                transition={{
-                  duration: 0.65,
-                  delay: index * 0.08,
-                }}
+  opacity: 0,
+  x: direction === 1 ? 60 : -60,
+}}
+animate={{
+  opacity: 1,
+  x: 0,
+}}
+exit={{
+  opacity: 0,
+  x: direction === 1 ? -60 : 60,
+}}
+transition={{
+  duration: 0.4,
+  ease: "easeInOut",
+}}
                 className="group relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#070b12] transition-all duration-500 hover:border-blue-500/25 hover:shadow-[0_0_60px_rgba(37,99,235,0.06)]"
               >
 
@@ -361,10 +407,31 @@ export default function Projects() {
                       </a>
                     )}
 
+{project.slug === "alasrar-al-thahabeya" && (
+  <a
+    href="https://alasraralthahabeya.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Open Al Asrar Al Thahabeya website"
+    className="group/website relative flex h-12 items-center gap-3 overflow-hidden rounded-full border border-blue-500/20 bg-blue-500/[0.07] pl-5 pr-2 text-xs font-medium text-blue-300 transition-all duration-500 hover:border-blue-400/40 hover:bg-blue-500/[0.14] hover:text-white hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]"
+  >
+    <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent transition-transform duration-700 group-hover/website:translate-x-full" />
+
+    <span className="relative z-10 whitespace-nowrap">
+      {t.projects.website}
+    </span>
+
+    <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border border-blue-400/20 bg-blue-500/10 transition-all duration-500 group-hover/website:border-blue-400/40 group-hover/website:bg-blue-500/20">
+      <ExternalLink size={14} />
+    </span>
+  </a>
+)}
+
                     {/* =================================================
                         VIEW PROJECT BUTTON
                     ================================================= */}
 
+                  {(
                     <Link
                       href={`/projects/${project.slug}`}
                       aria-label={`${t.projects.viewProject} ${projectTranslation.title}`}
@@ -383,6 +450,7 @@ export default function Projects() {
                         />
                       </span>
                     </Link>
+                    )}
                   </div>
                 </div>
 
@@ -396,8 +464,18 @@ export default function Projects() {
                   }`}
                 />
               </motion.article>
-            );
-          })}
+);
+})}
+</AnimatePresence>
+<div className="mt-6 flex items-center justify-center">
+  <span className="font-mono text-xs tracking-[0.2em] text-white/30">
+    <span className="text-blue-400">
+      {String(currentProject + 1).padStart(2, "0")}
+    </span>
+    <span className="mx-2 text-white/15">/</span>
+    {String(projects.length).padStart(2, "0")}
+  </span>
+</div>
         </div>
 
         {/* =========================================================
