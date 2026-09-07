@@ -28,6 +28,7 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 import { useTranslation } from "@/i18n/useTranslation";
 import FAQ from "@/components/FAQ";
 import TeamMemberModal from "@/components/TeamMemberModal";
+import ReadyWebsites from "@/components/ReadyWebsites";
 
 const services = [
   {
@@ -152,11 +153,12 @@ const { t } = useTranslation();
     <div className="hidden items-center gap-9 md:flex">
       {[
         { label: t.nav.home, id: "home" },
-        { label: t.nav.services, id: "services" },
-        { label: t.nav.projects, id: "projects" },
-        { label: t.nav.about, id: "about" },
-        { label: t.nav.team, id: "team" },
-        { label: t.nav.contact, id: "contact" },
+{ label: t.nav.services, id: "services" },
+{ label: t.nav.websites, id: "websites" },
+{ label: t.nav.projects, id: "projects" },
+{ label: t.nav.about, id: "about" },
+{ label: t.nav.team, id: "team" },
+{ label: t.nav.contact, id: "contact" },
       ].map((item, index) => (
         <a
           key={item.id}
@@ -245,11 +247,12 @@ const { t } = useTranslation();
         <div className="flex flex-col gap-1">
           {[
             { label: t.nav.home, id: "home" },
-            { label: t.nav.services, id: "services" },
-            { label: t.nav.projects, id: "projects" },
-            { label: t.nav.about, id: "about" },
-            { label: t.nav.team, id: "team" },
-            { label: t.nav.contact, id: "contact" },
+{ label: t.nav.services, id: "services" },
+{ label: t.nav.websites, id: "websites" },
+{ label: t.nav.projects, id: "projects" },
+{ label: t.nav.about, id: "about" },
+{ label: t.nav.team, id: "team" },
+{ label: t.nav.contact, id: "contact" },
           ].map((item) => (
             <a
               key={item.id}
@@ -611,6 +614,8 @@ const { t } = useTranslation();
           </div>
         </div>
       </section>
+
+      <ReadyWebsites />
 
       <Projects />
 

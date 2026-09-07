@@ -3,6 +3,7 @@ export const translations = {
     nav: {
       home: "Home",
       services: "Services",
+      websites: "Websites",
       projects: "Projects",
       about: "About",
       team: "Team",
@@ -109,6 +110,29 @@ alasrar: {
   description:
     "A modern corporate website for a Dubai-based technical services company, showcasing its services, expertise, and professional presence.",
   tags: ["Corporate", "Technical Services", "Responsive"],
+},
+
+websites: {
+  eyebrow: "READY WEBSITES FOR SALE",
+  title: "Launch Faster. Start Smarter.",
+  description:
+    "Professionally designed websites built for real businesses, ready to be launched and customized to your needs.",
+  comingSoon: "COMING SOON",
+  status: "AVAILABLE SOON",
+  itemDescription:
+    "A professionally designed website built for this type of business.",
+  categories: {
+    restaurant: "RESTAURANT WEBSITE",
+    realEstate: "REAL ESTATE WEBSITE",
+    business: "BUSINESS WEBSITE",
+    barbershop: "BARBERSHOP WEBSITE",
+  },
+  items: {
+    restaurant: "Modern Restaurant",
+    realEstate: "Premium Real Estate",
+    business: "Corporate Business",
+    barbershop: "Modern Barbershop",
+  },
 },
 
       viewProject: "View Project",
@@ -471,6 +495,7 @@ ar: {
   nav: {
     home: "الرئيسية",
     services: "الخدمات",
+    websites: "المواقع الجاهزة",
     projects: "المشاريع",
     about: "من نحن",
     team: "فريقنا",
@@ -581,6 +606,29 @@ ar: {
         "موقع مؤسسي حديث لشركة خدمات فنية في دبي، مصمم لعرض خدماتها وخبراتها وتعزيز حضورها الرقمي.",
       tags: ["موقع مؤسسي", "خدمات فنية", "متجاوب"],
     },
+
+    websites: {
+  eyebrow: "مواقع جاهزة للبيع",
+  title: "أطلق موقعك بشكل أسرع",
+  description:
+    "مواقع احترافية مصممة لأنشطة حقيقية، جاهزة للإطلاق والتخصيص حسب احتياجاتك.",
+  comingSoon: "قريبًا",
+  status: "متاح قريبًا",
+  itemDescription:
+    "موقع احترافي مصمم خصيصًا لهذا النوع من الأنشطة التجارية.",
+  categories: {
+    restaurant: "موقع مطعم",
+    realEstate: "موقع عقارات",
+    business: "موقع شركة",
+    barbershop: "موقع صالون وحلاقة",
+  },
+  items: {
+    restaurant: "مطعم عصري",
+    realEstate: "عقارات متميزة",
+    business: "شركة احترافية",
+    barbershop: "صالون عصري",
+  },
+},
 
     viewProject: "عرض المشروع",
     website: "الموقع",
