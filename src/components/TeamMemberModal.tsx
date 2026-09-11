@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
 
@@ -61,25 +60,44 @@ export default function TeamMemberModal({
 
             <div className="relative grid md:grid-cols-[0.85fr_1.15fr]">
               {/* =====================================================
-                  IMAGE
+                  TEAM MEMBER VISUAL
               ===================================================== */}
 
-              <div className="relative min-h-[420px] bg-[#060a11] md:min-h-[560px]">
-                {member.image ? (
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 40vw"
-                    className="object-cover object-center"
+              <div className="relative min-h-[420px] overflow-hidden bg-[#060a11] md:min-h-[560px]">
+                {/* Decorative Grid */}
+
+                <div className="absolute inset-0 opacity-[0.035]">
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)",
+                      backgroundSize: "42px 42px",
+                    }}
                   />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-mono text-5xl text-white/[0.04]">
-                      02
+                </div>
+
+                {/* Center Visual */}
+
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="relative flex h-32 w-32 items-center justify-center rounded-full border border-blue-500/20 bg-blue-500/[0.04] shadow-[0_0_80px_rgba(37,99,235,0.08)]">
+                    <div className="absolute inset-3 rounded-full border border-white/[0.06]" />
+
+                    <span className="font-mono text-4xl font-medium tracking-[-0.05em] text-white/[0.10]">
+                      VL
                     </span>
                   </div>
-                )}
+                </div>
+
+                {/* Decorative Lines */}
+
+                <div className="absolute left-8 top-1/2 h-px w-16 bg-gradient-to-r from-transparent to-blue-500/30" />
+
+                <div className="absolute right-8 top-1/2 h-px w-16 bg-gradient-to-l from-transparent to-blue-500/30" />
+
+                <div className="absolute left-1/2 top-8 h-16 w-px bg-gradient-to-b from-transparent to-blue-500/20" />
+
+                <div className="absolute bottom-8 left-1/2 h-16 w-px bg-gradient-to-t from-transparent to-blue-500/20" />
 
                 {/* Image Gradient */}
 

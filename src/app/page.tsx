@@ -23,7 +23,7 @@ import {
   Zap,
 } from "lucide-react";
 import Projects from "../components/Projects";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { useTranslation } from "@/i18n/useTranslation";
 import FAQ from "@/components/FAQ";
@@ -98,8 +98,24 @@ const [selectedMember, setSelectedMember] = useState<string | null>(null);
   const { language, setLanguage } = useLanguage();
 const { t } = useTranslation();
 
+useEffect(() => {
+  setLanguageTransition(true);
+
+  const timer = setTimeout(() => {
+    setLanguageTransition(false);
+  }, 180);
+
+  return () => clearTimeout(timer);
+}, [language]);
+
+const [languageTransition, setLanguageTransition] = useState(false);
+
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#03060b] text-white selection:bg-blue-500/30">
+    <main
+  className={`min-h-screen overflow-x-hidden bg-[#03060b] text-white selection:bg-blue-500/30 transition-opacity duration-200 ${
+    languageTransition ? "opacity-80" : "opacity-100"
+  }`}
+>
       
       {/* =========================================================
           BACKGROUND
@@ -278,9 +294,9 @@ const { t } = useTranslation();
   </div>
 </nav>
 
-      {/* =========================================================
-          HERO
-      ========================================================= */}
+{/* =========================================================
+    HERO
+========================================================= */}
 
       <section
   id="home"
@@ -740,44 +756,68 @@ const { t } = useTranslation();
       }}
       className="group relative cursor-pointer overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025] transition-all duration-500 hover:-translate-y-1 hover:border-blue-500/30 hover:bg-white/[0.04]"
     >
-      {/* Image */}
+      <div className="relative h-[300px] overflow-hidden bg-[#080d16] sm:h-[320px]">
+  {/* Decorative Grid */}
 
-      <div className="relative h-[300px] sm:h-[320px] overflow-hidden bg-[#080d16]">
+  <div className="absolute inset-0 opacity-[0.035]">
+    <div
+      className="absolute inset-0"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)",
+        backgroundSize: "42px 42px",
+      }}
+    />
+  </div>
 
-        <Image
-          src="/team/malek.png"
-          alt="Malek Anas Aloklla"
-          fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.035]"
-        />
+  {/* Founder Visual */}
 
-        {/* Gradient */}
+  <div className="absolute inset-0 flex items-center justify-center">
+    <div className="relative flex h-28 w-28 items-center justify-center rounded-full border border-blue-500/20 bg-blue-500/[0.04] shadow-[0_0_70px_rgba(37,99,235,0.08)]">
+      <div className="absolute inset-3 rounded-full border border-white/[0.06]" />
 
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080d16] via-transparent to-transparent" />
+      <span className="font-mono text-3xl font-medium tracking-[-0.05em] text-white/[0.10]">
+        VL
+      </span>
+    </div>
+  </div>
 
-        {/* Founder Badge */}
+  {/* Decorative Lines */}
 
-        <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-3 py-1.5 backdrop-blur-xl">
-          <span className="h-1.5 w-1.5 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
+  <div className="absolute left-8 top-1/2 h-px w-14 bg-gradient-to-r from-transparent to-blue-500/30" />
 
-          <span className="text-[8px] uppercase tracking-[0.2em] text-white/60">
-            {t.team.founder.badge}
-          </span>
-        </div>
+  <div className="absolute right-8 top-1/2 h-px w-14 bg-gradient-to-l from-transparent to-blue-500/30" />
 
-        {/* Number */}
+  <div className="absolute left-1/2 top-8 h-14 w-px bg-gradient-to-b from-transparent to-blue-500/20" />
 
-        <span className="absolute right-4 top-4 font-mono text-[9px] tracking-[0.2em] text-white/25">
-          01
-        </span>
+  <div className="absolute bottom-8 left-1/2 h-14 w-px bg-gradient-to-t from-transparent to-blue-500/20" />
 
-        {/* View Profile */}
+  {/* Gradient */}
 
-        <div className="absolute bottom-4 right-4 translate-y-3 rounded-full border border-white/10 bg-black/40 px-3 py-2 text-[9px] text-white/60 opacity-0 backdrop-blur-xl transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-          View Profile
-        </div>
-      </div>
+  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080d16] via-transparent to-transparent" />
+
+  {/* Founder Badge */}
+
+  <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-3 py-1.5 backdrop-blur-xl">
+    <span className="h-1.5 w-1.5 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
+
+    <span className="text-[8px] uppercase tracking-[0.2em] text-white/60">
+      {t.team.founder.badge}
+    </span>
+  </div>
+
+  {/* Number */}
+
+  <span className="absolute right-4 top-4 font-mono text-[9px] tracking-[0.2em] text-white/25">
+    01
+  </span>
+
+  {/* View Profile */}
+
+  <div className="absolute bottom-4 right-4 translate-y-3 rounded-full border border-white/10 bg-black/40 px-3 py-2 text-[9px] text-white/60 opacity-0 backdrop-blur-xl transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+    View Profile
+  </div>
+</div>
 
 
       {/* Card Content */}
@@ -956,35 +996,59 @@ const { t } = useTranslation();
           ================================================= */}
 
           <div className="relative min-h-[430px] overflow-hidden bg-[#050912] md:min-h-[650px]">
+  {/* Decorative Grid */}
 
-            <Image
-              src="/team/malek.png"
-              alt="Malek Anas Aloklla"
-              fill
-              sizes="(max-width: 768px) 100vw, 40vw"
-              className="object-cover object-center"
-            />
+  <div className="absolute inset-0 opacity-[0.035]">
+    <div
+      className="absolute inset-0"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)",
+        backgroundSize: "50px 50px",
+      }}
+    />
+  </div>
 
-            {/* Image Glow */}
+  {/* Founder Visual */}
 
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080d16] via-transparent to-transparent" />
+  <div className="absolute inset-0 flex items-center justify-center">
+    <div className="relative flex h-40 w-40 items-center justify-center rounded-full border border-blue-500/20 bg-blue-500/[0.04] shadow-[0_0_100px_rgba(37,99,235,0.10)]">
+      <div className="absolute inset-4 rounded-full border border-white/[0.06]" />
 
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent to-[#080d16]/40" />
+      <div className="absolute inset-8 rounded-full border border-blue-500/10" />
 
+      <span className="font-mono text-5xl font-medium tracking-[-0.06em] text-white/[0.10]">
+        VL
+      </span>
+    </div>
+  </div>
 
-            {/* Founder Badge */}
+  {/* Decorative Lines */}
 
-            <div className="absolute bottom-6 left-6 flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-4 py-2 backdrop-blur-xl">
+  <div className="absolute left-10 top-1/2 h-px w-24 bg-gradient-to-r from-transparent to-blue-500/30" />
 
-              <span className="h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_12px_rgba(59,130,246,0.8)]" />
+  <div className="absolute right-10 top-1/2 h-px w-24 bg-gradient-to-l from-transparent to-blue-500/30" />
 
-              <span className="text-[9px] uppercase tracking-[0.2em] text-white/60">
-                {t.team.founder.badge}
-              </span>
+  <div className="absolute left-1/2 top-10 h-24 w-px bg-gradient-to-b from-transparent to-blue-500/20" />
 
-            </div>
+  <div className="absolute bottom-10 left-1/2 h-24 w-px bg-gradient-to-t from-transparent to-blue-500/20" />
 
-          </div>
+  {/* Image Glow */}
+
+  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080d16] via-transparent to-transparent" />
+
+  <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent to-[#080d16]/40" />
+
+  {/* Founder Badge */}
+
+  <div className="absolute bottom-6 left-6 flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-4 py-2 backdrop-blur-xl">
+    <span className="h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_12px_rgba(59,130,246,0.8)]" />
+
+    <span className="text-[9px] uppercase tracking-[0.2em] text-white/60">
+      {t.team.founder.badge}
+    </span>
+  </div>
+</div>
 
 
           {/* =================================================
@@ -1653,6 +1717,6 @@ const { t } = useTranslation();
     </div>
   </div>
 </footer>
- </main>
+</main>
 );
 }

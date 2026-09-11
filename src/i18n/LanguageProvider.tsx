@@ -6,6 +6,7 @@ import {
   useEffect,
   useState,
   ReactNode,
+  startTransition,
 } from "react";
 
 type Language = "en" | "ar";
@@ -43,7 +44,27 @@ export function LanguageProvider({
   }, [language]);
 
   const setLanguage = (newLanguage: Language) => {
-    setLanguageState(newLanguage);
+    if (newLanguage === language) return;
+
+    const updateLanguage = () => {
+      startTransition(() => {
+        setLanguageState(newLanguage);
+      });
+    };
+
+    // Use the native View Transitions API when supported
+    if ("startViewTransition" in document) {
+      (
+        document as Document & {
+          startViewTransition?: (
+            callback: () => void,
+          ) => unknown;
+        }
+      ).startViewTransition?.(updateLanguage);
+    } else {
+      // Fallback for unsupported browsers
+      updateLanguage();
+    }
   };
 
   return (
