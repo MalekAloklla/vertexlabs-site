@@ -6,8 +6,8 @@ import {
   useEffect,
   useState,
   ReactNode,
-  startTransition,
 } from "react";
+import { flushSync } from "react-dom";
 
 type Language = "en" | "ar";
 
@@ -47,24 +47,33 @@ export function LanguageProvider({
     if (newLanguage === language) return;
 
     const updateLanguage = () => {
-      startTransition(() => {
+      flushSync(() => {
         setLanguageState(newLanguage);
       });
     };
 
-    // Use the native View Transitions API when supported
-    if ("startViewTransition" in document) {
-      (
+    if (
+      typeof document !== "undefined" &&
+      "startViewTransition" in document
+    ) {
+      const startViewTransition = (
         document as Document & {
           startViewTransition?: (
             callback: () => void,
-          ) => unknown;
+          ) => {
+            ready: Promise<void>;
+            finished: Promise<void>;
+          };
         }
-      ).startViewTransition?.(updateLanguage);
-    } else {
-      // Fallback for unsupported browsers
-      updateLanguage();
+      ).startViewTransition;
+
+      if (startViewTransition) {
+        startViewTransition.call(document, updateLanguage);
+        return;
+      }
     }
+
+    updateLanguage();
   };
 
   return (

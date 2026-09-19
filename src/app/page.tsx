@@ -252,48 +252,88 @@ const [languageTransition, setLanguageTransition] = useState(false);
     </button>
 
     {/* =====================================================
-        MOBILE MENU
-    ===================================================== */}
+    MOBILE MENU
+===================================================== */}
 
-    {menuOpen && (
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="absolute left-4 right-4 top-20 rounded-2xl border border-white/10 bg-[#080d16]/95 p-5 shadow-2xl backdrop-blur-xl md:hidden"
-      >
-        <div className="flex flex-col gap-1">
-          {[
-            { label: t.nav.home, id: "home" },
-{ label: t.nav.services, id: "services" },
-{ label: t.nav.websites, id: "websites" },
-{ label: t.nav.projects, id: "projects" },
-{ label: t.nav.about, id: "about" },
-{ label: t.nav.team, id: "team" },
-{ label: t.nav.contact, id: "contact" },
-          ].map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              onClick={() => setMenuOpen(false)}
-              className="rounded-xl px-4 py-3 text-sm text-white/70 transition hover:bg-white/5 hover:text-white"
-            >
-              {item.label}
-            </a>
-          ))}
-        </div>
-
+{menuOpen && (
+  <motion.div
+    initial={{ opacity: 0, y: -10 }}
+    animate={{ opacity: 1, y: 0 }}
+    className="absolute left-4 right-4 top-20 rounded-2xl border border-white/[0.08] bg-[#080d16]/95 p-3 shadow-2xl backdrop-blur-xl md:hidden"
+  >
+    <div className="flex flex-col gap-1">
+      {[
+        { label: t.nav.home, id: "home" },
+        { label: t.nav.services, id: "services" },
+        { label: t.nav.websites, id: "websites" },
+        { label: t.nav.projects, id: "projects" },
+        { label: t.nav.about, id: "about" },
+        { label: t.nav.team, id: "team" },
+        { label: t.nav.contact, id: "contact" },
+      ].map((item) => (
         <a
-          href="#contact"
+          key={item.id}
+          href={`#${item.id}`}
           onClick={() => setMenuOpen(false)}
-          className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-medium transition hover:bg-blue-500"
+          className="rounded-xl px-4 py-3 text-sm text-white/60 transition hover:bg-white/[0.04] hover:text-white"
         >
-          Let's Work Together
-          <ArrowRight size={16} />
+          {item.label}
         </a>
-      </motion.div>
-    )}
-  </div>
-</nav>
+      ))}
+    </div>
+
+    <div className="mt-3 border-t border-white/[0.06] pt-3">
+      <div className="flex items-center justify-between px-2">
+        <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/20">
+          Language
+        </span>
+
+        <div className="flex items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.025] p-1">
+          <button
+            type="button"
+            onClick={() => {
+              setLanguage("en");
+              setMenuOpen(false);
+            }}
+            className={`rounded-full px-3 py-1.5 text-[9px] tracking-[0.12em] transition-all ${
+              language === "en"
+                ? "bg-white text-black"
+                : "text-white/35 hover:text-white"
+            }`}
+          >
+            EN
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              setLanguage("ar");
+              setMenuOpen(false);
+            }}
+            className={`rounded-full px-3 py-1.5 text-[9px] tracking-[0.12em] transition-all ${
+              language === "ar"
+                ? "bg-white text-black"
+                : "text-white/35 hover:text-white"
+            }`}
+          >
+            AR
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <a
+      href="#contact"
+      onClick={() => setMenuOpen(false)}
+      className="mt-3 flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-medium transition hover:bg-blue-500"
+    >
+      Let's Work Together
+      <ArrowRight size={16} />
+    </a>
+  </motion.div>
+)}
+    </div>
+  </nav>
 
 {/* =========================================================
     HERO
