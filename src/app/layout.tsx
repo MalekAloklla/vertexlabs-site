@@ -70,10 +70,6 @@ export const metadata: Metadata = {
     google: "dWDzP65uZW6V9I_WXLgVon5iacXTGytAsrDY9Ol62MI",
   },
 
-  icons: {
-    icon: "/favicon.ico",
-  },
-
   openGraph: {
     type: "website",
     locale: "en_US",
