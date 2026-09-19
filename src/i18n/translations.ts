@@ -25,6 +25,7 @@ export const translations = {
       vertexLabs: "Vertex Labs",
       tagline: "Build. Scale. Innovate.",
       scroll: "Scroll to explore",
+      available: "Available for new projects",
     },
 
     services: {
@@ -519,6 +520,8 @@ ar: {
     vertexLabs: "Vertex Labs",
     tagline: "ابنِ. طوّر. ابتكر.",
     scroll: "مرر للاستكشاف",
+
+    available: "متاحون لمشاريع جديدة",
   },
 
   services: {
