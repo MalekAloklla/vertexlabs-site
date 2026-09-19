@@ -29,6 +29,7 @@ import { useTranslation } from "@/i18n/useTranslation";
 import FAQ from "@/components/FAQ";
 import TeamMemberModal from "@/components/TeamMemberModal";
 import ReadyWebsites from "@/components/ReadyWebsites";
+import CustomerReviews from "@/components/CustomerReviews";
 
 const services = [
   {
@@ -1088,6 +1089,7 @@ const [languageTransition, setLanguageTransition] = useState(false);
 <ReadyWebsites />
 
 <Projects />
+<CustomerReviews />
 
       {/* =========================================================
     ABOUT
