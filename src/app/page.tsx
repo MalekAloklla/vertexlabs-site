@@ -458,7 +458,7 @@ const [languageTransition, setLanguageTransition] = useState(false);
         </a>
 
         <a
-          href="https://www.linkedin.com/company/vertex-labs-dev/"
+          href="https://www.linkedin.com/company/vertexlabsdev/"
           target="_blank"
           rel="noreferrer"
           className="text-xs font-semibold text-white/35 transition-colors duration-300 hover:text-white"
