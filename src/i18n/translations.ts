@@ -170,14 +170,14 @@ export const translations = {
       role: "Business Owner",
       project: "Vertex Labs",
       quote:
-        "A professional and creative company in design, development, and programming. They have strong experience and creative work. I wish them continued success.",
+      "My experience with them was more than just designing a website; it was a great journey where I felt that my ideas were truly heard and valued. I experienced passion and professionalism in every detail, and the final result exceeded my expectations. I am very happy with the work and confidently recommend them.",
     },
     {
       name: "Zuhair Aloklla",
       role: "Business Owner",
       project: "Vertex Labs",
       quote:
-        "Creative and highly skilled professionals with great experience in design. I highly recommend working with them.",
+      "A great experience with this company! They are highly professional, friendly, and responsive. They understood exactly what I needed and created a professional website for my business. I am very happy with the final result and would definitely recommend their services.",
     },
     {
       name: "Abdulrahman Bourhan Bakhash",
@@ -186,6 +186,13 @@ export const translations = {
       quote:
         "Unmatched creativity and artistry. They provide their services with a high level of professionalism and outstanding work. They designed a Telegram bot for my business, and it was amazing and beautiful. Truly creative.",
     },
+    {
+  name: "Zakaria Yahya Al-Kafri",
+  role: "Client",
+  project: "Vertex Labs",
+  quote:
+    "Their designs and ideas are creative and beautiful. They have a strong vision and a great plan, their pricing is reasonable, and working with them is very comfortable. They truly stand out.",
+},
   ],
 },
 
@@ -717,14 +724,14 @@ export const translations = {
       role: "صاحب عمل",
       project: "Vertex Labs",
       quote:
-        "شركة محترمه ومبدعه في التصميم والتطوير و البرمجه , لديهم خبره قويه و عمل مبدع أتمنى لهم التوفيق الدائم.",
+      "تجربتي معهم كانت أكثر من مجرد تصميم موقع؛ كانت رحلة جميلة شعرت فيها أن أفكاري مسموعة ومحل اهتمام. لمست شغفًا واحترافية في كل تفصيلة، والنتيجة فاقت توقعاتي فعلًا. سعيد جدًا بالعمل معهم وأنصح بهم بكل ثقة.",
     },
     {
       name: "زهير العقلة",
       role: "صاحب عمل",
       project: "Vertex Labs",
       quote:
-        "مبدعون و فنانون ذو مهاره وخبره في مجال التصميم , أنصح فالتعامل معهم.",
+      "تجربة رائعة مع هذه الشركة! يتميزون بالاحترافية العالية والود وسرعة الاستجابة. لقد فهموا تماماً ما كنت أحتاجه وأنشأوا موقعاً إلكترونياً احترافياً لنشاطي التجاري. أنا سعيد جداً بالنتيجة النهائية، وبالتأكيد أوصي بخدماتهم.",
     },
     {
       name: "عبدالرحمن برهان بخش",
@@ -733,6 +740,13 @@ export const translations = {
       quote:
         "إبداع وفن لا يوصف يقدمون الخدمه بحرفيه عاليه و عمل مميز صمموا لي بوت تلجرام لعملي وكان رائع وجميل , مبدعون حقا.",
     },
+    {
+  name: "زكريا يحيى الكفري",
+  role: "عميل",
+  project: "Vertex Labs",
+  quote:
+    "تصاميمهم وأفكارهم إبداعية وجميلة، لديهم قوة ومخطط جميل، وأسعارهم جميلة، والتعامل معهم جدًا مريح ومميزون.",
+},
   ],
 },
 
